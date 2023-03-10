@@ -7,6 +7,16 @@ export default function FriendComponent({ data, friendNum }: { data: any, friend
     const [isClicked, setIsClicked] = useState<boolean>(false);
     const [isClickedSecurity, setIsClickedSecurity] = useState<boolean>(false);
 
+    const [hovered, setHovered] = useState<any>(false);
+
+    const handleMouseEnter = () => {
+      setHovered(true);
+    };
+  
+    const handleMouseLeave = () => {
+      setHovered(false);
+    };
+
   return (
     <Div>
       <HeaderDiv />
@@ -31,11 +41,17 @@ export default function FriendComponent({ data, friendNum }: { data: any, friend
               Messages
             </Button>
             <Button 
+            
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            
            
             onClick={() => setIsClickedSecurity(!isClickedSecurity)} 
             style={{
-                 color: isClickedSecurity ?  "#6997f1" : "black",
-                 background: isClickedSecurity ? "#dbf1fe" : "transparent"
+                 color: isClickedSecurity || hovered?  "#6997f1" : "black",
+                 background: isClickedSecurity || hovered? "#dbf1fe" : "transparent",
+                 
+                 
         }}
             >Contacts</Button>
             <Button onClick={() => {
@@ -416,6 +432,8 @@ const Button = styled.button`
   }
 `;
 
+
+
 const DivBut = styled.div`
   margin-top: 40px;
   display: flex;
@@ -452,3 +470,5 @@ const Line = styled.div`
   background: black;
   margin-bottom: 3px;
 `;
+
+
