@@ -7,14 +7,20 @@ export default function HomePage({
   clicked,
   setClicked,
   navigate,
-  setFriendNum
+  
+  setIndexNum,
+  indexNum
+ 
 }: {
   data: any;
   setData: any;
   clicked: any;
   setClicked: any;
-  navigate: any
-  setFriendNum: any
+  navigate: any;
+  
+  setIndexNum: any;
+  indexNum: any;
+  
 }) {
   return (
     <Div>
@@ -29,65 +35,23 @@ export default function HomePage({
         </Button>
       </ButtonDiv>
       <MainDiv >
-        <UserDiv>
-          <Img src={data && data.results[0].picture.thumbnail} alt="" />
-          <Pdiv onClick={() => {
-            navigate("friend")
-            setFriendNum(0)}}>
-            <P>{data && data.results[0].name.first}</P>
-            <P>{data && data.results[0].name.last}</P>
-          </Pdiv>
-        </UserDiv>
-        <UserDiv>
-          <Img src={data && data.results[1].picture.thumbnail} alt="" />
-          <Pdiv onClick={() => {
-            navigate("friend")
-            setFriendNum(1)}}>
-            
-            <P>{data && data.results[1].name.first}</P>
-            <P>{data && data.results[1].name.last}</P>
-          </Pdiv>
-        </UserDiv>
-        <UserDiv>
-          <Img src={data && data.results[2].picture.thumbnail} alt="" />
-          <Pdiv onClick={() => {
-            navigate("friend")
-            setFriendNum(2)}}>
-            
-            <P>{data && data.results[2].name.first}</P>
-            <P>{data && data.results[2].name.last}</P>
-          </Pdiv>
-        </UserDiv>
-        <UserDiv>
-          <Img src={data && data.results[3].picture.thumbnail} alt="" />
-          <Pdiv onClick={() => {
-            navigate("friend")
-            setFriendNum(3)}}>
-            
-            <P>{data && data.results[3].name.first}</P>
-            <P>{data && data.results[3].name.last}</P>
-          </Pdiv>
-        </UserDiv>
-        <UserDiv>
-          <Img src={data && data.results[4].picture.thumbnail} alt="" />
-          <Pdiv onClick={() => {
-            navigate("friend")
-            setFriendNum(4)}}>
-            
-            <P>{data && data.results[4].name.first}</P>
-            <P>{data && data.results[4].name.last}</P>
-          </Pdiv>
-        </UserDiv>
-        <UserDiv>
-          <Img src={data && data.results[5].picture.thumbnail} alt="" />
-          <Pdiv onClick={() => {
-            navigate("friend")
-            setFriendNum(5)}}>
-            
-            <P>{data && data.results[5].name.first}</P>
-            <P>{data && data.results[5].name.last}</P>
-          </Pdiv>
-        </UserDiv>
+      
+
+{data && data.results.map((result: any, index : number) => (
+  <UserDiv key={index}>
+    <Img src={result.picture.thumbnail} alt="" />
+    <Pdiv onClick={() => {
+      navigate("friend")
+      setIndexNum(index)}}>
+        
+      
+      <P>{result.name.first}</P>
+      <P>{result.name.last}</P>
+    </Pdiv>
+  </UserDiv>
+))}
+
+
       </MainDiv>
     </Div>
   );
@@ -146,8 +110,9 @@ const MainDiv = styled.div<any>`
   flex-direction: row;
   flex-wrap: wrap;
   background: transparent;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   width: 800px;
+  align-items: flex-start;
 `;
 
 const UserDiv = styled.div`
@@ -158,4 +123,5 @@ const UserDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-right: 25px;
 `;

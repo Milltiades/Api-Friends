@@ -1,21 +1,26 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-export default function FriendComponent({ data, friendNum }: { data: any, friendNum : any }) {
+export default function FriendComponent({
+  data,
+  indexNum
+}: {
+  data: any;
+  indexNum: any
   
+}) {
+  const [isClicked, setIsClicked] = useState<boolean>(false);
+  const [isClickedSecurity, setIsClickedSecurity] = useState<boolean>(false);
 
-    const [isClicked, setIsClicked] = useState<boolean>(false);
-    const [isClickedSecurity, setIsClickedSecurity] = useState<boolean>(false);
+  const [hovered, setHovered] = useState<any>(false);
 
-    const [hovered, setHovered] = useState<any>(false);
+  const handleMouseEnter = () => {
+    setHovered(true);
+  };
 
-    const handleMouseEnter = () => {
-      setHovered(true);
-    };
-  
-    const handleMouseLeave = () => {
-      setHovered(false);
-    };
+  const handleMouseLeave = () => {
+    setHovered(false);
+  };
 
   return (
     <Div>
@@ -24,391 +29,585 @@ export default function FriendComponent({ data, friendNum }: { data: any, friend
       <Line />
       <Line />
 
-     {friendNum == 0 ? <DivMain>
-        <Img src={data && data.results[0].picture.large} alt="" />
-        <Content>
-          <H1>
-            {data && data.results[0].name.first}{" "}
-            {data && data.results[0].name.last}
-          </H1>
-          <DivBut>
-            <Button
-            onClick={() => {
-                setIsClicked(false)
-                setIsClickedSecurity(false)}}
-            style={{padding: "5px 30px 5px 0px"}}>
-              <Box className="box" />
-              Messages
-            </Button>
-            <Button 
-            
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            
-           
-            onClick={() => setIsClickedSecurity(!isClickedSecurity)} 
-            style={{
-                 color: isClickedSecurity || hovered?  "#6997f1" : "black",
-                 background: isClickedSecurity || hovered? "#dbf1fe" : "transparent",
-                 
-                 
-        }}
-            >Contacts</Button>
-            <Button onClick={() => {
-                setIsClicked(false)
-                setIsClickedSecurity(false)}}>About Me</Button>
-          </DivBut>
+      {/* {friendNum == 0 ? (
+        <DivMain>
+          <Img src={data && data.results[0].picture.large} alt="" />
+          <Content>
+            <H1>
+              {data && data.results[0].name.first}{" "}
+              {data && data.results[0].name.last}
+            </H1>
+            <DivBut>
+              <Button
+                onClick={() => {
+                  setIsClicked(false);
+                  setIsClickedSecurity(false);
+                }}
+                style={{ padding: "5px 30px 5px 0px" }}
+              >
+                <Box className="box" />
+                Messages
+              </Button>
+              <Button
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => setIsClickedSecurity(!isClickedSecurity)}
+                style={{
+                  color: isClickedSecurity || hovered ? "#6997f1" : "black",
+                  background:
+                    isClickedSecurity || hovered ? "#dbf1fe" : "transparent",
+                }}
+              >
+                Contacts
+              </Button>
+              <Button
+                onClick={() => {
+                  setIsClicked(false);
+                  setIsClickedSecurity(false);
+                }}
+              >
+                About Me
+              </Button>
+            </DivBut>
 
-          <SecurityAbout style={{display: isClickedSecurity ? "flex" : "none"}}>
-            <SecurityBTN onClick={() => setIsClicked(false)}>Security</SecurityBTN>
-            <SecurityBTN onClick={() => setIsClicked(!isClicked)}>About Me</SecurityBTN>
-          </SecurityAbout>
-          <UnderLine style={{display: isClickedSecurity ? "flex" : "none"}}/>
-          <UnderDiv style={{display: isClicked ? "block" : "none"}}>
-            <UnderDivContent>
+            <SecurityAbout
+              style={{ display: isClickedSecurity ? "flex" : "none" }}
+            >
+              <SecurityBTN onClick={() => setIsClicked(false)}>
+                Security
+              </SecurityBTN>
+              <SecurityBTN onClick={() => setIsClicked(!isClicked)}>
+                About Me
+              </SecurityBTN>
+            </SecurityAbout>
+            <UnderLine
+              style={{ display: isClickedSecurity ? "flex" : "none" }}
+            />
+            <UnderDiv style={{ display: isClicked ? "block" : "none" }}>
+              <UnderDivContent>
                 <UnderP>Phone</UnderP>
                 <UnderP2>+{data && data.results[0].phone}</UnderP2>
-            </UnderDivContent>
-            <UnderDivContent>
+              </UnderDivContent>
+              <UnderDivContent>
                 <UnderP>Adress</UnderP>
-                <UnderP2>{data && data.results[0].location.street.name}    {data && data.results[0].location.street.number} str</UnderP2>
-            </UnderDivContent>
-            <UnderDivContent>
+                <UnderP2>
+                  {data && data.results[0].location.street.name}{" "}
+                  {data && data.results[0].location.street.number} str
+                </UnderP2>
+              </UnderDivContent>
+              <UnderDivContent>
                 <UnderP>Email</UnderP>
                 <UnderP2>{data && data.results[0].email}</UnderP2>
-            </UnderDivContent>
-          </UnderDiv>
-        </Content>
-        
-      </DivMain> : null}
+              </UnderDivContent>
+            </UnderDiv>
+          </Content>
+        </DivMain>
+      ) : null}
 
-      {friendNum == 1 ? <DivMain>
-        <Img src={data && data.results[1].picture.large} alt="" />
-        <Content>
-          <H1>
-            {data && data.results[1].name.first}{" "}
-            {data && data.results[1].name.last}
-          </H1>
-          <DivBut>
-            <Button
-            onClick={() => {
-                setIsClicked(false)
-                setIsClickedSecurity(false)}}
-            style={{padding: "5px 30px 5px 0px"}}>
-              <Box className="box" />
-              Messages
-            </Button>
-            <Button
-            
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-           
-            onClick={() => setIsClickedSecurity(!isClickedSecurity)} 
-            style={{
-                 color: isClickedSecurity || hovered ?  "#6997f1" : "black",
-                 background: isClickedSecurity || hovered ? "#dbf1fe" : "transparent"
-        }}
-            >Contacts</Button>
-            <Button onClick={() => {
-                setIsClicked(false)
-                setIsClickedSecurity(false)}}>About Me</Button>
-          </DivBut>
+      {friendNum == 1 ? (
+        <DivMain>
+          <Img src={data && data.results[1].picture.large} alt="" />
+          <Content>
+            <H1>
+              {data && data.results[1].name.first}{" "}
+              {data && data.results[1].name.last}
+            </H1>
+            <DivBut>
+              <Button
+                onClick={() => {
+                  setIsClicked(false);
+                  setIsClickedSecurity(false);
+                }}
+                style={{ padding: "5px 30px 5px 0px" }}
+              >
+                <Box className="box" />
+                Messages
+              </Button>
+              <Button
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => setIsClickedSecurity(!isClickedSecurity)}
+                style={{
+                  color: isClickedSecurity || hovered ? "#6997f1" : "black",
+                  background:
+                    isClickedSecurity || hovered ? "#dbf1fe" : "transparent",
+                }}
+              >
+                Contacts
+              </Button>
+              <Button
+                onClick={() => {
+                  setIsClicked(false);
+                  setIsClickedSecurity(false);
+                }}
+              >
+                About Me
+              </Button>
+            </DivBut>
 
-          <SecurityAbout style={{display: isClickedSecurity ? "flex" : "none"}}>
-            <SecurityBTN onClick={() => setIsClicked(false)}>Security</SecurityBTN>
-            <SecurityBTN onClick={() => setIsClicked(!isClicked)}>About Me</SecurityBTN>
-          </SecurityAbout>
-          <UnderLine style={{display: isClickedSecurity ? "flex" : "none"}}/>
-          <UnderDiv style={{display: isClicked ? "block" : "none"}}>
-            <UnderDivContent>
+            <SecurityAbout
+              style={{ display: isClickedSecurity ? "flex" : "none" }}
+            >
+              <SecurityBTN onClick={() => setIsClicked(false)}>
+                Security
+              </SecurityBTN>
+              <SecurityBTN onClick={() => setIsClicked(!isClicked)}>
+                About Me
+              </SecurityBTN>
+            </SecurityAbout>
+            <UnderLine
+              style={{ display: isClickedSecurity ? "flex" : "none" }}
+            />
+            <UnderDiv style={{ display: isClicked ? "block" : "none" }}>
+              <UnderDivContent>
                 <UnderP>Phone</UnderP>
                 <UnderP2>+{data && data.results[1].phone}</UnderP2>
-            </UnderDivContent>
-            <UnderDivContent>
+              </UnderDivContent>
+              <UnderDivContent>
                 <UnderP>Adress</UnderP>
-                <UnderP2>{data && data.results[1].location.street.name}    {data && data.results[1].location.street.number} str</UnderP2>
-            </UnderDivContent>
-            <UnderDivContent>
+                <UnderP2>
+                  {data && data.results[1].location.street.name}{" "}
+                  {data && data.results[1].location.street.number} str
+                </UnderP2>
+              </UnderDivContent>
+              <UnderDivContent>
                 <UnderP>Email</UnderP>
                 <UnderP2>{data && data.results[1].email}</UnderP2>
-            </UnderDivContent>
-          </UnderDiv>
-        </Content>
-        
-      </DivMain> : null}
+              </UnderDivContent>
+            </UnderDiv>
+          </Content>
+        </DivMain>
+      ) : null}
 
-      {friendNum == 2 ? <DivMain>
-        <Img src={data && data.results[2].picture.large} alt="" />
-        <Content>
-          <H1>
-            {data && data.results[2].name.first}{" "}
-            {data && data.results[2].name.last}
-          </H1>
-          <DivBut>
-            <Button
-            onClick={() => {
-                setIsClicked(false)
-                setIsClickedSecurity(false)}}
-            style={{padding: "5px 30px 5px 0px"}}>
-              <Box className="box" />
-              Messages
-            </Button>
-            <Button
-            
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-           
-            onClick={() => setIsClickedSecurity(!isClickedSecurity)} 
-            style={{
-                 color: isClickedSecurity || hovered ?  "#6997f1" : "black",
-                 background: isClickedSecurity || hovered ? "#dbf1fe" : "transparent"
-        }}
-            >Contacts</Button>
-            <Button onClick={() => {
-                setIsClicked(false)
-                setIsClickedSecurity(false)}}>About Me</Button>
-          </DivBut>
+      {friendNum == 2 ? (
+        <DivMain>
+          <Img src={data && data.results[2].picture.large} alt="" />
+          <Content>
+            <H1>
+              {data && data.results[2].name.first}{" "}
+              {data && data.results[2].name.last}
+            </H1>
+            <DivBut>
+              <Button
+                onClick={() => {
+                  setIsClicked(false);
+                  setIsClickedSecurity(false);
+                }}
+                style={{ padding: "5px 30px 5px 0px" }}
+              >
+                <Box className="box" />
+                Messages
+              </Button>
+              <Button
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => setIsClickedSecurity(!isClickedSecurity)}
+                style={{
+                  color: isClickedSecurity || hovered ? "#6997f1" : "black",
+                  background:
+                    isClickedSecurity || hovered ? "#dbf1fe" : "transparent",
+                }}
+              >
+                Contacts
+              </Button>
+              <Button
+                onClick={() => {
+                  setIsClicked(false);
+                  setIsClickedSecurity(false);
+                }}
+              >
+                About Me
+              </Button>
+            </DivBut>
 
-          <SecurityAbout style={{display: isClickedSecurity ? "flex" : "none"}}>
-            <SecurityBTN onClick={() => setIsClicked(false)}>Security</SecurityBTN>
-            <SecurityBTN onClick={() => setIsClicked(!isClicked)}>About Me</SecurityBTN>
-          </SecurityAbout>
-          <UnderLine style={{display: isClickedSecurity ? "flex" : "none"}}/>
-          <UnderDiv style={{display: isClicked ? "block" : "none"}}>
-            <UnderDivContent>
+            <SecurityAbout
+              style={{ display: isClickedSecurity ? "flex" : "none" }}
+            >
+              <SecurityBTN onClick={() => setIsClicked(false)}>
+                Security
+              </SecurityBTN>
+              <SecurityBTN onClick={() => setIsClicked(!isClicked)}>
+                About Me
+              </SecurityBTN>
+            </SecurityAbout>
+            <UnderLine
+              style={{ display: isClickedSecurity ? "flex" : "none" }}
+            />
+            <UnderDiv style={{ display: isClicked ? "block" : "none" }}>
+              <UnderDivContent>
                 <UnderP>Phone</UnderP>
                 <UnderP2>+{data && data.results[2].phone}</UnderP2>
-            </UnderDivContent>
-            <UnderDivContent>
+              </UnderDivContent>
+              <UnderDivContent>
                 <UnderP>Adress</UnderP>
-                <UnderP2>{data && data.results[2].location.street.name}    {data && data.results[2].location.street.number} str</UnderP2>
-            </UnderDivContent>
-            <UnderDivContent>
+                <UnderP2>
+                  {data && data.results[2].location.street.name}{" "}
+                  {data && data.results[2].location.street.number} str
+                </UnderP2>
+              </UnderDivContent>
+              <UnderDivContent>
                 <UnderP>Email</UnderP>
                 <UnderP2>{data && data.results[2].email}</UnderP2>
-            </UnderDivContent>
-          </UnderDiv>
-        </Content>
-        
-      </DivMain> : null}
+              </UnderDivContent>
+            </UnderDiv>
+          </Content>
+        </DivMain>
+      ) : null}
 
-      {friendNum == 3 ? <DivMain>
-        <Img src={data && data.results[3].picture.large} alt="" />
-        <Content>
-          <H1>
-            {data && data.results[3].name.first}{" "}
-            {data && data.results[3].name.last}
-          </H1>
-          <DivBut>
-            <Button
-            onClick={() => {
-                setIsClicked(false)
-                setIsClickedSecurity(false)}}
-            style={{padding: "5px 30px 5px 0px"}}>
-              <Box className="box" />
-              Messages
-            </Button>
-            <Button
-            
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-           
-            onClick={() => setIsClickedSecurity(!isClickedSecurity)} 
-            style={{
-                 color: isClickedSecurity || hovered ?  "#6997f1" : "black",
-                 background: isClickedSecurity || hovered ? "#dbf1fe" : "transparent"
-        }}
-            >Contacts</Button>
-            <Button onClick={() => {
-                setIsClicked(false)
-                setIsClickedSecurity(false)}}>About Me</Button>
-          </DivBut>
+      {friendNum == 3 ? (
+        <DivMain>
+          <Img src={data && data.results[3].picture.large} alt="" />
+          <Content>
+            <H1>
+              {data && data.results[3].name.first}{" "}
+              {data && data.results[3].name.last}
+            </H1>
+            <DivBut>
+              <Button
+                onClick={() => {
+                  setIsClicked(false);
+                  setIsClickedSecurity(false);
+                }}
+                style={{ padding: "5px 30px 5px 0px" }}
+              >
+                <Box className="box" />
+                Messages
+              </Button>
+              <Button
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => setIsClickedSecurity(!isClickedSecurity)}
+                style={{
+                  color: isClickedSecurity || hovered ? "#6997f1" : "black",
+                  background:
+                    isClickedSecurity || hovered ? "#dbf1fe" : "transparent",
+                }}
+              >
+                Contacts
+              </Button>
+              <Button
+                onClick={() => {
+                  setIsClicked(false);
+                  setIsClickedSecurity(false);
+                }}
+              >
+                About Me
+              </Button>
+            </DivBut>
 
-          <SecurityAbout style={{display: isClickedSecurity ? "flex" : "none"}}>
-            <SecurityBTN onClick={() => setIsClicked(false)}>Security</SecurityBTN>
-            <SecurityBTN onClick={() => setIsClicked(!isClicked)}>About Me</SecurityBTN>
-          </SecurityAbout>
-          <UnderLine style={{display: isClickedSecurity ? "flex" : "none"}}/>
-          <UnderDiv style={{display: isClicked ? "block" : "none"}}>
-            <UnderDivContent>
+            <SecurityAbout
+              style={{ display: isClickedSecurity ? "flex" : "none" }}
+            >
+              <SecurityBTN onClick={() => setIsClicked(false)}>
+                Security
+              </SecurityBTN>
+              <SecurityBTN onClick={() => setIsClicked(!isClicked)}>
+                About Me
+              </SecurityBTN>
+            </SecurityAbout>
+            <UnderLine
+              style={{ display: isClickedSecurity ? "flex" : "none" }}
+            />
+            <UnderDiv style={{ display: isClicked ? "block" : "none" }}>
+              <UnderDivContent>
                 <UnderP>Phone</UnderP>
                 <UnderP2>+{data && data.results[3].phone}</UnderP2>
-            </UnderDivContent>
-            <UnderDivContent>
+              </UnderDivContent>
+              <UnderDivContent>
                 <UnderP>Adress</UnderP>
-                <UnderP2>{data && data.results[3].location.street.name}    {data && data.results[3].location.street.number} str</UnderP2>
-            </UnderDivContent>
-            <UnderDivContent>
+                <UnderP2>
+                  {data && data.results[3].location.street.name}{" "}
+                  {data && data.results[3].location.street.number} str
+                </UnderP2>
+              </UnderDivContent>
+              <UnderDivContent>
                 <UnderP>Email</UnderP>
                 <UnderP2>{data && data.results[3].email}</UnderP2>
-            </UnderDivContent>
-          </UnderDiv>
-        </Content>
-        
-      </DivMain> : null}
+              </UnderDivContent>
+            </UnderDiv>
+          </Content>
+        </DivMain>
+      ) : null}
 
-      {friendNum == 4 ? <DivMain>
-        <Img src={data && data.results[4].picture.large} alt="" />
-        <Content>
-          <H1>
-            {data && data.results[4].name.first}{" "}
-            {data && data.results[4].name.last}
-          </H1>
-          <DivBut>
-            <Button
-            onClick={() => {
-                setIsClicked(false)
-                setIsClickedSecurity(false)}}
-            style={{padding: "5px 30px 5px 0px"}}>
-              <Box className="box" />
-              Messages
-            </Button>
-            <Button
-            
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-           
-            onClick={() => setIsClickedSecurity(!isClickedSecurity)} 
-            style={{
-                 color: isClickedSecurity || hovered ?  "#6997f1" : "black",
-                 background: isClickedSecurity || hovered ? "#dbf1fe" : "transparent"
-        }}
-            >Contacts</Button>
-            <Button onClick={() => {
-                setIsClicked(false)
-                setIsClickedSecurity(false)}}>About Me</Button>
-          </DivBut>
+      {friendNum == 4 ? (
+        <DivMain>
+          <Img src={data && data.results[4].picture.large} alt="" />
+          <Content>
+            <H1>
+              {data && data.results[4].name.first}{" "}
+              {data && data.results[4].name.last}
+            </H1>
+            <DivBut>
+              <Button
+                onClick={() => {
+                  setIsClicked(false);
+                  setIsClickedSecurity(false);
+                }}
+                style={{ padding: "5px 30px 5px 0px" }}
+              >
+                <Box className="box" />
+                Messages
+              </Button>
+              <Button
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => setIsClickedSecurity(!isClickedSecurity)}
+                style={{
+                  color: isClickedSecurity || hovered ? "#6997f1" : "black",
+                  background:
+                    isClickedSecurity || hovered ? "#dbf1fe" : "transparent",
+                }}
+              >
+                Contacts
+              </Button>
+              <Button
+                onClick={() => {
+                  setIsClicked(false);
+                  setIsClickedSecurity(false);
+                }}
+              >
+                About Me
+              </Button>
+            </DivBut>
 
-          <SecurityAbout style={{display: isClickedSecurity ? "flex" : "none"}}>
-            <SecurityBTN onClick={() => setIsClicked(false)}>Security</SecurityBTN>
-            <SecurityBTN onClick={() => setIsClicked(!isClicked)}>About Me</SecurityBTN>
-          </SecurityAbout>
-          <UnderLine style={{display: isClickedSecurity ? "flex" : "none"}}/>
-          <UnderDiv style={{display: isClicked ? "block" : "none"}}>
-            <UnderDivContent>
+            <SecurityAbout
+              style={{ display: isClickedSecurity ? "flex" : "none" }}
+            >
+              <SecurityBTN onClick={() => setIsClicked(false)}>
+                Security
+              </SecurityBTN>
+              <SecurityBTN onClick={() => setIsClicked(!isClicked)}>
+                About Me
+              </SecurityBTN>
+            </SecurityAbout>
+            <UnderLine
+              style={{ display: isClickedSecurity ? "flex" : "none" }}
+            />
+            <UnderDiv style={{ display: isClicked ? "block" : "none" }}>
+              <UnderDivContent>
                 <UnderP>Phone</UnderP>
                 <UnderP2>+{data && data.results[4].phone}</UnderP2>
-            </UnderDivContent>
-            <UnderDivContent>
+              </UnderDivContent>
+              <UnderDivContent>
                 <UnderP>Adress</UnderP>
-                <UnderP2>{data && data.results[4].location.street.name}    {data && data.results[4].location.street.number} str</UnderP2>
-            </UnderDivContent>
-            <UnderDivContent>
+                <UnderP2>
+                  {data && data.results[4].location.street.name}{" "}
+                  {data && data.results[4].location.street.number} str
+                </UnderP2>
+              </UnderDivContent>
+              <UnderDivContent>
                 <UnderP>Email</UnderP>
                 <UnderP2>{data && data.results[4].email}</UnderP2>
-            </UnderDivContent>
-          </UnderDiv>
-        </Content>
-        
-      </DivMain> : null}
+              </UnderDivContent>
+            </UnderDiv>
+          </Content>
+        </DivMain>
+      ) : null}
 
-      {friendNum == 5 ? <DivMain>
-        <Img src={data && data.results[5].picture.large} alt="" />
-        <Content>
-          <H1>
-            {data && data.results[5].name.first}{" "}
-            {data && data.results[5].name.last}
-          </H1>
-          <DivBut>
-            <Button
-            onClick={() => {
-                setIsClicked(false)
-                setIsClickedSecurity(false)}}
-            style={{padding: "5px 30px 5px 0px"}}>
-              <Box className="box" />
-              Messages
-            </Button>
-            <Button
-            
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-           
-            onClick={() => setIsClickedSecurity(!isClickedSecurity)} 
-            style={{
-                 color: isClickedSecurity || hovered ?  "#6997f1" : "black",
-                 background: isClickedSecurity || hovered ? "#dbf1fe" : "transparent"
-        }}
-            >Contacts</Button>
-            <Button onClick={() => {
-                setIsClicked(false)
-                setIsClickedSecurity(false)}}>About Me</Button>
-          </DivBut>
+      {friendNum == 5 ? (
+        <DivMain>
+          <Img src={data && data.results[5].picture.large} alt="" />
+          <Content>
+            <H1>
+              {data && data.results[5].name.first}{" "}
+              {data && data.results[5].name.last}
+            </H1>
+            <DivBut>
+              <Button
+                onClick={() => {
+                  setIsClicked(false);
+                  setIsClickedSecurity(false);
+                }}
+                style={{ padding: "5px 30px 5px 0px" }}
+              >
+                <Box className="box" />
+                Messages
+              </Button>
+              <Button
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => setIsClickedSecurity(!isClickedSecurity)}
+                style={{
+                  color: isClickedSecurity || hovered ? "#6997f1" : "black",
+                  background:
+                    isClickedSecurity || hovered ? "#dbf1fe" : "transparent",
+                }}
+              >
+                Contacts
+              </Button>
+              <Button
+                onClick={() => {
+                  setIsClicked(false);
+                  setIsClickedSecurity(false);
+                }}
+              >
+                About Me
+              </Button>
+            </DivBut>
 
-          <SecurityAbout style={{display: isClickedSecurity ? "flex" : "none"}}>
-            <SecurityBTN onClick={() => setIsClicked(false)}>Security</SecurityBTN>
-            <SecurityBTN onClick={() => setIsClicked(!isClicked)}>About Me</SecurityBTN>
-          </SecurityAbout>
-          <UnderLine style={{display: isClickedSecurity ? "flex" : "none"}}/>
-          <UnderDiv style={{display: isClicked ? "block" : "none"}}>
-            <UnderDivContent>
+            <SecurityAbout
+              style={{ display: isClickedSecurity ? "flex" : "none" }}
+            >
+              <SecurityBTN onClick={() => setIsClicked(false)}>
+                Security
+              </SecurityBTN>
+              <SecurityBTN onClick={() => setIsClicked(!isClicked)}>
+                About Me
+              </SecurityBTN>
+            </SecurityAbout>
+            <UnderLine
+              style={{ display: isClickedSecurity ? "flex" : "none" }}
+            />
+            <UnderDiv style={{ display: isClicked ? "block" : "none" }}>
+              <UnderDivContent>
                 <UnderP>Phone</UnderP>
                 <UnderP2>+{data && data.results[5].phone}</UnderP2>
-            </UnderDivContent>
-            <UnderDivContent>
+              </UnderDivContent>
+              <UnderDivContent>
                 <UnderP>Adress</UnderP>
-                <UnderP2>{data && data.results[5].location.street.name}    {data && data.results[5].location.street.number} str</UnderP2>
-            </UnderDivContent>
-            <UnderDivContent>
+                <UnderP2>
+                  {data && data.results[5].location.street.name}{" "}
+                  {data && data.results[5].location.street.number} str
+                </UnderP2>
+              </UnderDivContent>
+              <UnderDivContent>
                 <UnderP>Email</UnderP>
                 <UnderP2>{data && data.results[5].email}</UnderP2>
-            </UnderDivContent>
-          </UnderDiv>
-        </Content>
-        
-      </DivMain> : null}
-      
+              </UnderDivContent>
+            </UnderDiv>
+          </Content>
+        </DivMain>
+      ) : null} */}
+
+      {data &&
+        data.results.map((result: any, index: any) => {
+          return (
+            (indexNum == index ? <DivMain key={index}>
+              <Img src={result.picture.large} alt="" />
+              <Content>
+                <H1>
+                  {result.name.first} {result.name.last}
+                </H1>
+                <DivBut>
+                  <Button
+                    onClick={() => {
+                      setIsClicked(false);
+                      setIsClickedSecurity(false);
+                    }}
+                    style={{ padding: "5px 30px 5px 0px" }}
+                  >
+                    <Box className="box" />
+                    Messages
+                  </Button>
+                  <Button
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                    onClick={() => setIsClickedSecurity(!isClickedSecurity)}
+                    style={{
+                      color: isClickedSecurity || hovered ? "#6997f1" : "black",
+                      background:
+                        isClickedSecurity || hovered
+                          ? "#dbf1fe"
+                          : "transparent",
+                    }}
+                  >
+                    Contacts
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setIsClicked(false);
+                      setIsClickedSecurity(false);
+                    }}
+                  >
+                    About Me
+                  </Button>
+                </DivBut>
+
+                <SecurityAbout
+                  style={{ display: isClickedSecurity ? "flex" : "none" }}
+                >
+                  <SecurityBTN onClick={() => setIsClicked(false)}>
+                    Security
+                  </SecurityBTN>
+                  <SecurityBTN onClick={() => setIsClicked(!isClicked)}>
+                    About Me
+                  </SecurityBTN>
+                </SecurityAbout>
+                <UnderLine
+                  style={{ display: isClickedSecurity ? "flex" : "none" }}
+                />
+                <UnderDiv style={{ display: isClicked ? "block" : "none" }}>
+                  <UnderDivContent>
+                    <UnderP>Phone</UnderP>
+                    <UnderP2>+{result.phone}</UnderP2>
+                  </UnderDivContent>
+                  <UnderDivContent>
+                    <UnderP>Adress</UnderP>
+                    <UnderP2>
+                      {result.location.street.name}{" "}
+                      {result.location.street.number} str
+                    </UnderP2>
+                  </UnderDivContent>
+                  <UnderDivContent>
+                    <UnderP>Email</UnderP>
+                    <UnderP2>{result.email}</UnderP2>
+                  </UnderDivContent>
+                </UnderDiv>
+              </Content>
+            </DivMain> : null)
+          );
+        })}
     </Div>
   );
 }
 
 const UnderP = styled.p`
-margin-top: 10px;
-    width: 140px;
-    font-size: 25px;
-    font-weight: 600;
-    line-height: 45px;
-`
+  margin-top: 10px;
+  width: 140px;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 45px;
+`;
 
 const UnderP2 = styled(UnderP)`
-    width: 360px;
-`
+  width: 360px;
+`;
 const UnderDivContent = styled.div`
-    display: flex;
-    flex-direction: row;
-`
+  display: flex;
+  flex-direction: row;
+`;
 const UnderDiv = styled.div`
-margin-top: 15px;
-    width: 100%;
-    height: 200px;
-   background: transparent;
-`
+  margin-top: 15px;
+  width: 100%;
+  height: 200px;
+  background: transparent;
+`;
 
 const UnderLine = styled.div`
-    margin-top: 10px;
-    height: 2px;
-    background: #8B8B8B;
-`
-
+  margin-top: 10px;
+  height: 2px;
+  background: #8b8b8b;
+`;
 
 const SecurityAbout = styled.div`
-margin-top: 80px;
-    display: flex;
-    flex-direction: row;
-`
+  margin-top: 80px;
+  display: flex;
+  flex-direction: row;
+`;
 
 const SecurityBTN = styled.button`
-    color: #8B8B8B;
-    border: none;
-    background: transparent;
-     font-size: 25px;
-     transition: all .3s ease;
-     font-weight: 600;
-     margin-right: 40px;
-     &:hover {
-        color: black;
-     }
-     line-height: 45px;
-`
+  color: #8b8b8b;
+  border: none;
+  background: transparent;
+  font-size: 25px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  margin-right: 40px;
+  &:hover {
+    color: black;
+  }
+  line-height: 45px;
+`;
 const Content = styled.div`
   margin-left: 150px;
   overflow: hidden;
@@ -447,8 +646,6 @@ const Button = styled.button`
   }
 `;
 
-
-
 const DivBut = styled.div`
   margin-top: 40px;
   display: flex;
@@ -467,8 +664,6 @@ const DivMain = styled.div`
   background: transparent;
   font-family: bolder;
   align-items: flex-start;
- 
- 
 `;
 
 const Div = styled.div`
@@ -485,5 +680,3 @@ const Line = styled.div`
   background: black;
   margin-bottom: 3px;
 `;
-
-
