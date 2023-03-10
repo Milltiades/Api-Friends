@@ -98,12 +98,15 @@ export default function FriendComponent({ data, friendNum }: { data: any, friend
               <Box className="box" />
               Messages
             </Button>
-            <Button 
+            <Button
+            
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
            
             onClick={() => setIsClickedSecurity(!isClickedSecurity)} 
             style={{
-                 color: isClickedSecurity ?  "#6997f1" : "black",
-                 background: isClickedSecurity ? "#dbf1fe" : "transparent"
+                 color: isClickedSecurity || hovered ?  "#6997f1" : "black",
+                 background: isClickedSecurity || hovered ? "#dbf1fe" : "transparent"
         }}
             >Contacts</Button>
             <Button onClick={() => {
@@ -150,12 +153,15 @@ export default function FriendComponent({ data, friendNum }: { data: any, friend
               <Box className="box" />
               Messages
             </Button>
-            <Button 
+            <Button
+            
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
            
             onClick={() => setIsClickedSecurity(!isClickedSecurity)} 
             style={{
-                 color: isClickedSecurity ?  "#6997f1" : "black",
-                 background: isClickedSecurity ? "#dbf1fe" : "transparent"
+                 color: isClickedSecurity || hovered ?  "#6997f1" : "black",
+                 background: isClickedSecurity || hovered ? "#dbf1fe" : "transparent"
         }}
             >Contacts</Button>
             <Button onClick={() => {
@@ -202,12 +208,15 @@ export default function FriendComponent({ data, friendNum }: { data: any, friend
               <Box className="box" />
               Messages
             </Button>
-            <Button 
+            <Button
+            
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
            
             onClick={() => setIsClickedSecurity(!isClickedSecurity)} 
             style={{
-                 color: isClickedSecurity ?  "#6997f1" : "black",
-                 background: isClickedSecurity ? "#dbf1fe" : "transparent"
+                 color: isClickedSecurity || hovered ?  "#6997f1" : "black",
+                 background: isClickedSecurity || hovered ? "#dbf1fe" : "transparent"
         }}
             >Contacts</Button>
             <Button onClick={() => {
@@ -254,12 +263,15 @@ export default function FriendComponent({ data, friendNum }: { data: any, friend
               <Box className="box" />
               Messages
             </Button>
-            <Button 
+            <Button
+            
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
            
             onClick={() => setIsClickedSecurity(!isClickedSecurity)} 
             style={{
-                 color: isClickedSecurity ?  "#6997f1" : "black",
-                 background: isClickedSecurity ? "#dbf1fe" : "transparent"
+                 color: isClickedSecurity || hovered ?  "#6997f1" : "black",
+                 background: isClickedSecurity || hovered ? "#dbf1fe" : "transparent"
         }}
             >Contacts</Button>
             <Button onClick={() => {
@@ -306,12 +318,15 @@ export default function FriendComponent({ data, friendNum }: { data: any, friend
               <Box className="box" />
               Messages
             </Button>
-            <Button 
+            <Button
+            
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
            
             onClick={() => setIsClickedSecurity(!isClickedSecurity)} 
             style={{
-                 color: isClickedSecurity ?  "#6997f1" : "black",
-                 background: isClickedSecurity ? "#dbf1fe" : "transparent"
+                 color: isClickedSecurity || hovered ?  "#6997f1" : "black",
+                 background: isClickedSecurity || hovered ? "#dbf1fe" : "transparent"
         }}
             >Contacts</Button>
             <Button onClick={() => {
